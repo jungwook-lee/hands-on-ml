@@ -128,7 +128,7 @@
   - makes it easy to try various transformation
 
 
-- `Data Cleaning`:
+#### Data Cleaning
   - Dealing with `Missing` Features
   - You can:
     - get rid of data with missing features `DataFrame.dropna()`
@@ -139,7 +139,7 @@
   - you can output calculated values using `SimpleImputer.statistcs_`
 
 
-- `Scikit-Learn`'s API Design: all objects sharea consistent and simple interface
+#### Scikit-Learn's API Design
   - `Estimators`: estimate some kind of parameters using `fit()` with `hyperparameters`
   - `Transformers`: transform a dataset, using `transform()`, also has a handy `fit_transform()` to do both at same time
   - `Predictors`: some estimators can output predictions, such as linear regression model. usese `predict()` and `score()` to measure of the quality of prediction
@@ -149,8 +149,27 @@
   - `Sensible defaults`: provides good default values for most parameters
 
 
-- Handling `Text` and `Categorical` Attributes:
+#### Handling Text and Categorical Attributes:
   - problem with mapping text categories that they won't represent the continuous relationship
   - for example, red=0, blue=1, green=2 doesn't make much sense on a number line
   - Thus use `sklearn.preprocessing.OneHotEncoder`
   - for text->int->one-hot, use `sklearn.preprocessing.LabelBinarizer`
+
+
+#### Custom Transfomers
+  - why write custom transformers?
+    - sometimes you will need to write your own custom cleanup/combining attributes
+    - want to make transformer to work seamlessly with scikit-learn functionalities (i.e. pipelines)
+    - scikit relies on `duck-typing`
+    - the more you automate, the more you can try different hyperparams and such ...
+
+#### Feature Scaling
+- Machine Learning algorithms don't behave well, if the values are all over the place! (i.e. scales)
+- Two common methods `min-max scaling` and `standardization`
+- min-max scaling is basically normalization (0 to 1)
+- `standardization` is different
+  - subtracts the mean value, `zero-mean`
+  - divide by variance `unit-variance`
+  - does not bound values to a specific range, problematic for `ReLu` units or neural networks
+  - however, not affected by outliers that much
+- use `sklearn.preprocessing.StandardScaler` for standardization
