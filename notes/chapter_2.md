@@ -102,3 +102,55 @@
   - sometimes `stratified` sampling is better
   - `strata` are homogenous subgroups
   - if a certain `feature` is quite important, it is important that the `test` set contains enough
+
+## Discover and Visualize the Data to Gain Insight
+- Use a scatterplot (since the data is based on 2d locations)
+- overlay features such as populations as circles with radius
+- color values based on output features (i.e. price)
+
+
+- `correlations`, compute standard correlation coefficient (Pearson's r) between every pair of attributes
+  - note that `correlation` is a `linear` relationship
+  - ranges from -1 to 1
+  - 1 or -1 is strong relation
+  - strong correlation means similar linear growth with variable increase
+  - pandas allow `scatter_matrix`
+- Binning to categories sometimes cause some quicks in the data
+- Fuse features to bring new combinations `feature engineering`
+  - Some fused features might correlate better!
+  - `Experimentation` with features is key.
+
+## Prepare the Data for Machine Learning Algorithms
+- Why should we write functions to prepare the data?
+  - reproduce the transformation on any dataset
+  - build a library of transformation functions for the future
+  - use them on live system to transform new data
+  - makes it easy to try various transformation
+
+
+- `Data Cleaning`:
+  - Dealing with `Missing` Features
+  - You can:
+    - get rid of data with missing features `DataFrame.dropna()`
+    - get rid of the feature itself `DataFrame.drop()`
+    - fill missing values `DataFrame.fillna(value)`
+  - Often `median` value is used to fill
+  - you can use `sklearn.impute.SimpleImputer`
+  - you can output calculated values using `SimpleImputer.statistcs_`
+
+
+- `Scikit-Learn`'s API Design: all objects sharea consistent and simple interface
+  - `Estimators`: estimate some kind of parameters using `fit()` with `hyperparameters`
+  - `Transformers`: transform a dataset, using `transform()`, also has a handy `fit_transform()` to do both at same time
+  - `Predictors`: some estimators can output predictions, such as linear regression model. usese `predict()` and `score()` to measure of the quality of prediction
+  - `Inspection`: all of estimators's hyperparameters are directly accessible by public instance variables
+  - `Nonproliferation of clsses`: datasets are `numpy` or `scipy` sparse matrices, hyperparameters are python strings or numbers
+  - `Composition`: existing functions are used as much as possible, thus `Pipeline` is easy to make
+  - `Sensible defaults`: provides good default values for most parameters
+
+
+- Handling `Text` and `Categorical` Attributes:
+  - problem with mapping text categories that they won't represent the continuous relationship
+  - for example, red=0, blue=1, green=2 doesn't make much sense on a number line
+  - Thus use `sklearn.preprocessing.OneHotEncoder`
+  - for text->int->one-hot, use `sklearn.preprocessing.LabelBinarizer`
