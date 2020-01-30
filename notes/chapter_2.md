@@ -98,3 +98,7 @@
   - when using `random`, set a `np.random.seed(42)` to ensure you have same results
   - for dealing with future proofing test sets, you can hash the instances
   - use stable features to make unique identifiers
+  - `Random` sampling isn't always best to get representative `train/test` split
+  - sometimes `stratified` sampling is better
+  - `strata` are homogenous subgroups
+  - if a certain `feature` is quite important, it is important that the `test` set contains enough
