@@ -173,3 +173,8 @@
   - does not bound values to a specific range, problematic for `ReLu` units or neural networks
   - however, not affected by outliers that much
 - use `sklearn.preprocessing.StandardScaler` for standardization
+
+#### Transformation Pipelines
+- use `sklearn.pipline.Pipeline` to streamline the overall sequence of transformations
+- use `FeatureUnion` to join the feature together at the end of pipeline
+- `TransformerMixin` gives you `fit_transform()`
