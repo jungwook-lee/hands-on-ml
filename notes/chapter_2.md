@@ -178,3 +178,27 @@
 - use `sklearn.pipline.Pipeline` to streamline the overall sequence of transformations
 - use `FeatureUnion` to join the feature together at the end of pipeline
 - `TransformerMixin` gives you `fit_transform()`
+
+## Select and Train a Model
+
+#### Training and Evaluating on the Training Set
+- `sklearn.linear_model.LinearRegression`, linear regression model
+  - This model simply fits a line between data points
+- Check error using `RMSE` and `MAE`
+- Sometimes the training error is 0. Meaning that the model badly overfitted
+- `cross-validation` to validate your training without using the test data
+- `sklearn.model_selection.cross_val_score` helps in doing the cross validation
+- it outputs utility scores (greater the better), than cost function (lower is better)
+- With cross-validation, you get a `mean` and `std` measure of the scores of the model at the cost of `computation time`
+- Therefore, it is not always possible
+- `RandomForestRegressor` works by training many decision trees on random subsets of features, then averaging out their predictions.
+- `ensemble learning` is building models on top of many other models, you can achieve better performance
+- When `train` is alot lower than `validation` score, it could still mean that your model is overfitting. Possible solutions are:
+  - simplify the model
+  - constraint it (regularization)
+  - more data
+- Other fun model types include:
+  - `Support Vector Machines` with different kernels
+  - `neural networks` ...
+- Before heavily regularizing, try other models off the shelf to see how good they work. Get about 2-5 that works okay.
+- `sklearn.externals.joblib.dump` to save trained parameters, hyperparameters and others. uses `pickle`
